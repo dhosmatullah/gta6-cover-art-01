@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — multi-panel cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <main class="stage">
+    <header class="brand">
+      <h1>NEON COAST <span>COVER STUDIO</span></h1>
+      <p>Your photos in. Poster out. Everything stays on your machine.</p>
+    </header>
+    <div class="canvas-wrap">
+      <canvas id="preview" width="1080" height="1350"></canvas>
+      <div class="hint" id="dragHint">Click a panel to select it · drag to move the photo · scroll to zoom</div>
+    </div>
+  </main>
+
+  <aside class="controls">
+    <section>
+      <h2>1 · Photos</h2>
+      <label class="drop" id="dropZone">
+        <input type="file" id="photoInput" accept="image/*" multiple hidden>
+        <strong>Load your photos</strong>
+        <small>Click or drop images here — they never leave this machine.</small>
+      </label>
+      <div class="row">
+        <button type="button" id="sampleBoulevard">Try sample: Boulevard</button>
+        <button type="button" id="samplePier">Try sample: Pier</button>
+      </div>
+      <div class="strip" id="photoStrip"></div>
+    </section>
+
+    <section>
+      <h2>2 · Layout</h2>
+      <div class="seg" id="layoutSeg">
+        <button type="button" data-layout="grid9" class="on">Cover Grid · 9</button>
+        <button type="button" data-layout="hero">Hero + Trio</button>
+        <button type="button" data-layout="mosaic">Mosaic · 5</button>
+        <button type="button" data-layout="fullbleed">Full Bleed</button>
+      </div>
+      <h2>Colour grade</h2>
+      <div class="seg" id="gradeSeg">
+        <button type="button" data-grade="sunset" class="on">Vice Sunset</button>
+        <button type="button" data-grade="neon">Neon Nights</button>
+        <button type="button" data-grade="gold">Golden Hour</button>
+        <button type="button" data-grade="pastel">Pastel Vice</button>
+      </div>
+      <label class="slider">Grade strength <input type="range" id="gradeStrength" min="40" max="100" value="80"></label>
+    </section>
+
+    <section>
+      <h2>3 · Caption</h2>
+      <label>Cover title <input type="text" id="captionInput" value="Neon Coast" maxlength="26"></label>
+      <label>Script subtitle <input type="text" id="scriptInput" value="vice nights" maxlength="30"></label>
+      <div class="row">
+        <label class="grow">Heat stars <input type="range" id="starsInput" min="0" max="5" step="1" value="5"></label>
+        <label class="grow">Badge <input type="text" id="badgeInput" value="EST 2026" maxlength="12"></label>
+      </div>
+    </section>
+
+    <section>
+      <h2>4 · Selected panel</h2>
+      <p class="panel-name" id="panelName">Panel 1 of 9</p>
+      <div class="row">
+        <button type="button" id="prevPhoto">◀ Photo</button>
+        <button type="button" id="nextPhoto">Photo ▶</button>
+        <button type="button" id="fillAll">Fill all panels</button>
+        <button type="button" id="resetFrame">Reset frame</button>
+      </div>
+      <label class="slider">Zoom <input type="range" id="zoomInput" min="100" max="300" value="100"></label>
+    </section>
+
+    <section>
+      <h2>5 · Export</h2>
+      <div class="seg" id="sizeSeg">
+        <button type="button" data-size="square">1080 × 1080</button>
+        <button type="button" data-size="portrait" class="on">1080 × 1350</button>
+        <button type="button" data-size="wide">1920 × 1080</button>
+      </div>
+      <button type="button" id="exportBtn" class="export">Export cover as PNG</button>
+      <p class="fine">Original art only — lettering, palms, skyline and grades are drawn by this app. No game logos, artwork or fonts.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
